@@ -1,54 +1,75 @@
-🎌『Frosthaven』日本語化手順ガイド（UABEAvalonia使用）
+# 🎌『Frosthaven』日本語化手順ガイド（UABEAvalonia使用）
+
 以下の手順で『Frosthaven』を日本語化できます。特別なツール「UABEAvalonia」を使用します。
 
-✅ 必要なもの
-『Frosthaven』本体（Steamでインストール済み）
+---
 
-日本語化ファイル（I2Languages.txt）
+## ✅ 必要なもの
 
-UABEAvalonia（UnityAssetsBundleExtractor GUI版）
+- 『Frosthaven』本体（Steamでインストール済み）
+- 日本語化ファイル（`I2Languages.txt`）
+- UABEAvalonia（UnityAssetsBundleExtractor GUI版）
 
-📥 Step 1: UABEAvaloniaをダウンロード
-以下のGitHubページにアクセスします
-👉 https://github.com/nesrak1/UABEA
+---
 
-右側にある「Latest」の欄を探し、「uabea-windows.zip」をクリックしてダウンロードします。
+## 📥 Step 1: UABEAvaloniaをダウンロード
 
-ダウンロードしたzipファイルを解凍します。
+1. 以下のGitHubページにアクセスします  
+   👉 [https://github.com/nesrak1/UABEA](https://github.com/nesrak1/UABEA)
 
-🧰 Step 2: UABEAvaloniaを起動する
-解凍して出てきたフォルダの中にある UABEAvalonia.exe を実行します。
+2. 右側にある「**Latest**」の欄を探し、「**uabea-windows.zip**」をクリックしてダウンロードします。
 
-📂 Step 3: 『Frosthaven』のリソースファイルを開く
-UABEA のメニューから「File → Open」を選択。
+3. ダウンロードしたzipファイルを解凍します。
 
-以下のパスにあるファイルを指定して開きます：
+---
 
-java
-コピーする
-編集する
-C:\Program Files (x86)\Steam\steamapps\common\Frosthaven\Frosthaven_Data\resources.assets
-🔤 Step 4: I2Languagesを選択・置き換え
-読み込まれたアセット一覧の中から I2Languages を探します（名前の列でソートすると見つけやすいです）。
+## 🧰 Step 2: UABEAvaloniaを起動する
 
-I2Languages を選択した状態で、画面右側の「Import Dump」をクリックします。
+1. 解凍して出てきたフォルダの中にある `UABEAvalonia.exe` を実行します。
 
-事前に用意しておいた日本語ファイル I2Languages.txt を選択して開きます。
+---
 
-💾 Step 5: 上書き保存
-メニューから「File → Save」を選びます。
+## 📂 Step 3: 『Frosthaven』のリソースファイルを開く
 
-上書き保存が完了したら、UABEAvaloniaを閉じてもOKです。
+1. UABEA のメニューから「**File → Open**」を選択。
 
-🈂️ Step 6: ゲーム内で中国語（簡体字）を選択
-『Frosthaven』を起動します。
+2. 以下のパスにあるファイルを指定して開きます：
 
-言語設定で「Chinese (Simplified)」を選択してください。
+   ```
+   C:\Program Files (x86)\Steam\steamapps\common\Frosthaven\Frosthaven_Data\resources.assets
+   ```
 
-ゲーム内の表示が日本語になっていれば成功です！
+---
 
-🔁 補足
-元のファイルをバックアップしておくと安心です。
+## 🔤 Step 4: I2Languagesを選択・置き換え
 
-ゲームがアップデートされると、再度日本語化が必要になる場合があります。
+1. 読み込まれたアセット一覧の中から **`I2Languages`** を探します（名前の列でソートすると見つけやすいです）。
 
+2. `I2Languages` を選択した状態で、画面右側の「**Import Dump**」をクリックします。
+
+3. 事前に用意しておいた日本語ファイル `I2Languages.txt` を選択して開きます。
+
+---
+
+## 💾 Step 5: 上書き保存
+
+1. メニューから「**File → Save**」を選びます。
+
+2. 上書き保存が完了したら、UABEAvaloniaを閉じてもOKです。
+
+---
+
+## 🈂️ Step 6: ゲーム内で中国語（簡体字）を選択
+
+1. 『Frosthaven』を起動します。
+
+2. 言語設定で「**Chinese (Simplified)**」を選択してください。
+
+3. ゲーム内の表示が日本語になっていれば成功です！
+
+---
+
+## 🔁 補足
+
+- 元のファイルをバックアップしておくと安心です。
+- ゲームがアップデートされると、再度日本語化が必要になる場合があります。
