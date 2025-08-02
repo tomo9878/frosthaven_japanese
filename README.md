@@ -48,7 +48,7 @@
    ```
    C:\Program Files (x86)\Steam\steamapps\common\Frosthaven\Frosthaven_Data\resources.assets
    ```
-
+Steamのインストール場所が違う設定にされてる方は自分の環境に読み替えてください
 ---
 
 ## 🔤 Step 4: I2Languagesを選択・置き換え
