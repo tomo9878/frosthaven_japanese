@@ -1,0 +1,50 @@
+name: release-on-tag
+
+on:
+  push:
+    tags:
+      - "v*.*.*"    # 例: v1.2.3 を push すると発火
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # ここにビルド・パッケージ化など（任意）
+      # - run: make build
+
+      - name: Archive artifacts
+        run: |
+          mkdir -p dist
+          # 例: 生成物をまとめる
+          # cp path/to/output dist/
+          tar -czf myapp-${{ github.ref_name }}.tar.gz dist
+        shell: bash
+
+      - name: Upload artifact to workflow
+        uses: actions/upload-artifact@v4
+        with:
+          name: package
+          path: myapp-${{ github.ref_name }}.tar.gz
+
+  release:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: package
+          path: .
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}      # 例: v1.2.3
+          name: Release ${{ github.ref_name }}
+          draft: false
+          prerelease: ${{ contains(github.ref_name, '-rc') || contains(github.ref_name, '-beta') }}
+          files: |
+            myapp-${{ github.ref_name }}.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
