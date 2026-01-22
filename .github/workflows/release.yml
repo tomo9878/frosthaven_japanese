@@ -1,50 +1,39 @@
-name: release-on-tag
+name: Auto Release on Push
 
 on:
   push:
-    tags:
-      - "v*.*.*"    # 例: v1.2.3 を push すると発火
+    branches:
+      - main  # mainブランチにプッシュされたら即座に実行
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      # ここにビルド・パッケージ化など（任意）
-      # - run: make build
-
-      - name: Archive artifacts
-        run: |
-          mkdir -p dist
-          # 例: 生成物をまとめる
-          # cp path/to/output dist/
-          tar -czf myapp-${{ github.ref_name }}.tar.gz dist
-        shell: bash
-
-      - name: Upload artifact to workflow
-        uses: actions/upload-artifact@v4
-        with:
-          name: package
-          path: myapp-${{ github.ref_name }}.tar.gz
-
   release:
     runs-on: ubuntu-latest
-    needs: build
+    permissions:
+      contents: write # リリースを作成する権限
     steps:
-      - uses: actions/download-artifact@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
-          name: package
-          path: .
+          fetch-depth: 0 # コミットメッセージ取得のために履歴を全部取る
 
-      - name: Create GitHub Release
+      - name: Get Commit Message
+        id: commit_msg
+        # 直前のコミットメッセージを環境変数に入れる
+        run: echo "msg=$(git log -1 --pretty=%s)" >> $GITHUB_OUTPUT
+
+      - name: Create ZIP
+        # 配布したいファイル名をここに並べる
+        run: zip -r frosthaven_jp_mod.zip I2Languages.txt README.md
+
+      - name: Upload to Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.ref_name }}      # 例: v1.2.3
-          name: Release ${{ github.ref_name }}
+          # タグ名は重複できないので「日時」を自動で入れる
+          tag_name: "release-${{ github.sha }}"
+          # コミットメッセージをリリースのタイトルにする
+          name: "${{ steps.commit_msg.outputs.msg }}"
+          files: frosthaven_jp_mod.zip
           draft: false
-          prerelease: ${{ contains(github.ref_name, '-rc') || contains(github.ref_name, '-beta') }}
-          files: |
-            myapp-${{ github.ref_name }}.tar.gz
+          prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
