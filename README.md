@@ -17,7 +17,7 @@
 1. 以下のGitHubページにアクセスします  
    👉 [https://github.com/nesrak1/UABEA](https://github.com/nesrak1/UABEA)
 
-2. 右側にある「**Latest**」の欄を探し、「**uabea-windows.zip**」をクリックしてダウンロードします。
+2. 右側にある「**relase**」のリンクをクリックし、遷移先で「**uabea-windows.zip**」をクリックしてダウンロードします。
 
 3. ダウンロードしたzipファイルを解凍します。
 
